@@ -1,0 +1,16 @@
+{
+    "name": "BrickHelper POV Extension",
+    "version": "1.0",
+    "description": "This extension will parse the current page for Lego set numbers. If one is found, a button will display in its place. Clicking the button will load the corresponding BrickLink page and display a portion of it.",
+    "manifest_version": 2,
+    "content_scripts": [
+        {
+          "matches": ["https://brickseek.com/*"],
+          "js": ["brickseekSearchCards.js"]
+        },
+        {
+          "matches": ["https://brickset.com/buy"],
+          "js": ["bricksetBuyList.js"]
+        }
+      ]
+}
