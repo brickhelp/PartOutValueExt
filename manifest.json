@@ -7,10 +7,6 @@
         {
           "matches": ["https://brickseek.com/*"],
           "js": ["brickseekSearchCards.js"]
-        },
-        {
-          "matches": ["https://brickset.com/buy"],
-          "js": ["bricksetBuyList.js"]
         }
       ]
 }
