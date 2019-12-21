@@ -10,7 +10,7 @@ function addPOVLink(target, url, imgUrl, cssClass, text) {
 
   if (imgUrl) {
     var imgTag = document.createElement("img");
-    imgTag.setAttribute("src", imgUrl);
+    imgTag.setAttribute("src", chrome.extension.getURL(imgUrl));
     imgTag.setAttribute("alt", text);
     aTag.appendChild(imgTag);
   } else {
@@ -25,7 +25,7 @@ const regex = /\d+(?=\D*$)/gm;
 const tileClassName = "item-list__tile";
 const titleClassName = "item-list__title";
 const baseUrl = "https://www.bricklink.com/catalogPOV.asp?itemType=S&itemSeq=1&itemQty=1&itemCondition=N&itemNo=";
-const bricklinkLogo = "//static.bricklink.com/renovate/img/favicon/favicon-32x32.png";
+const povImage = "images/partout.png";
 const povButtonText = "POV";
 const povButtonCss = "item-list__button-item";
 
@@ -53,7 +53,7 @@ for (var i = 0; i < tileElements.length; i++) {
       }
 
       if (linkArea[0]) {
-        addPOVLink(linkArea[0], baseUrl + setNo, bricklinkLogo, povButtonCss, povButtonText);
+        addPOVLink(linkArea[0], baseUrl + setNo, povImage, povButtonCss, povButtonText);
       }
     }
   }

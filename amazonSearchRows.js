@@ -10,7 +10,7 @@ function addPOVLink(target, url, imgUrl, cssClass, text) {
 
   if (imgUrl) {
     var imgTag = document.createElement("img");
-    imgTag.setAttribute("src", imgUrl);
+    imgTag.setAttribute("src", chrome.extension.getURL(imgUrl));
     imgTag.setAttribute("alt", text);
     aTag.appendChild(imgTag);
   } else {
@@ -21,43 +21,39 @@ function addPOVLink(target, url, imgUrl, cssClass, text) {
 }
 
 let matches;
-const regex = /\d+(?=\D*$)/gm;
-
-const titleClassName = "item-list__title";
+const regex = /\b\d{5}\b/g;
 const baseUrl = "https://www.bricklink.com/catalogPOV.asp?itemType=S&itemSeq=1&itemQty=1&itemCondition=N&itemNo=";
-const bricklinkLogo = "//static.bricklink.com/renovate/img/favicon/favicon-32x32.png";
+const povImage = "images/partout.png";
 const povButtonText = "POV";
 const povButtonCss = "item-list__button-item";
 
-var resultElements = document.querySelectorAll('[data-asin]');
-if(resultElements[0]) {
-  for (var i = 0; i < resultElements.length; i++) {
-    var tile = tileElements[i];
-    var titleElements = tile.getElementsByClassName(titleClassName);
-    var titleText = titleElements[0].innerText;
-  
+var dataElements = document.querySelectorAll('[data-asin]');
+if (dataElements[0]) {
+  for (var i = 0; i < dataElements.length; i++) {
+    var titleElements = dataElements[i].getElementsByTagName("h2");
+    var spanElements = titleElements[0].getElementsByTagName("span");
+    var titleText = spanElements[0].innerText;
+
     if (titleText.toLowerCase().includes("lego")) {
       while ((matches = regex.exec(titleText)) !== null) {
         // This is necessary to avoid infinite loops with zero-width matches
         if (matches.index === regex.lastIndex) {
           regex.lastIndex++;
         }
-  
+
         var setNo = matches.join();
         if (setNo.length < 5 || setNo.length > 5) {
           continue;
         }
-  
-        var linkArea = tile.getElementsByClassName("item-list__button");
-        if (linkArea[0] === undefined) {
-          linkArea = tile.getElementsByClassName("item-list__footer");
-        }
-  
-        if (linkArea[0]) {
-          addPOVLink(linkArea[0], baseUrl + setNo, bricklinkLogo, povButtonCss, povButtonText);
+
+        console.log(`set no: ${setNo}`);
+
+        var rows = dataElements[i].getElementsByClassName("sg-row");
+        if (rows.length > 0) {
+          console.log("here1");
+          addPOVLink(rows[rows.length-1], baseUrl + setNo, povImage, povButtonCss, povButtonText);
         }
       }
     }
   }
 }
-
