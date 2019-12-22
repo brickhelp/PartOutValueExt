@@ -1,33 +1,14 @@
 // Copyright 2019 BrickHelper
 "use strict";
 
-function addPOVLink(target, url, imgUrl, cssClass, text) {
-  var aTag = document.createElement("a");
-  aTag.setAttribute("class", cssClass);
-  aTag.setAttribute("href", url);
-  aTag.setAttribute("target", "_blank");
-
-
-  if (imgUrl) {
-    var imgTag = document.createElement("img");
-    imgTag.setAttribute("src", chrome.extension.getURL(imgUrl));
-    imgTag.setAttribute("alt", text);
-    aTag.appendChild(imgTag);
-  } else {
-    aTag.innerText = text;
-  }
-
-  target.appendChild(aTag);
-}
-
 let matches;
 const regex = /\d+(?=\D*$)/gm;
 const tileClassName = "item-list__tile";
 const titleClassName = "item-list__title";
-const baseUrl = "https://www.bricklink.com/catalogPOV.asp?itemType=S&itemSeq=1&itemQty=1&itemCondition=N&itemNo=";
-const povImage = "images/partout.png";
-const povButtonText = "POV";
+const linkAreaCss1 = "item-list__button";
+const linkAreaCss2 = "item-list__footer";
 const povButtonCss = "item-list__button-item";
+
 
 var tileElements = document.getElementsByClassName(tileClassName);
 for (var i = 0; i < tileElements.length; i++) {
@@ -47,9 +28,9 @@ for (var i = 0; i < tileElements.length; i++) {
         continue;
       }
 
-      var linkArea = tile.getElementsByClassName("item-list__button");
+      var linkArea = tile.getElementsByClassName(linkAreaCss1);
       if (linkArea[0] === undefined) {
-        linkArea = tile.getElementsByClassName("item-list__footer");
+        linkArea = tile.getElementsByClassName(linkAreaCss2);
       }
 
       if (linkArea[0]) {

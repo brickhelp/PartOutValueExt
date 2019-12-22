@@ -9,15 +9,29 @@
         "https://brickseek.com/*"
       ],
       "js": [
+        "constants.js",
+        "buttons.js",
         "brickseekSearchCards.js"
       ]
     },
     {
       "matches": [
-        "https://*.amazon.com/*"
+        "https://*.amazon.com/s?*"
       ],
       "js": [
+        "constants.js",
+        "buttons.js",
         "amazonSearchRows.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://*.amazon.com/*/dp/*"
+      ],
+      "js": [
+        "constants.js",
+        "buttons.js",
+        "amazonProductPage.js"
       ]
     }
   ],
