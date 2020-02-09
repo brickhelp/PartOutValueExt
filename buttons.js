@@ -1,7 +1,7 @@
 const povUrl = "https://www.bricklink.com/catalogPOV.asp?itemType=S&itemSeq=1&itemQty=1&breakType=M&itemCondition=N&incInstr=Y&itemNo=";
 const setUrl = "https://www.bricklink.com/v2/catalog/catalogitem.page?S=";
 const figsUrl = "https://www.bricklink.com/catalogItemInv.asp?viewItemType=M&S=";
-const buttonClass = "social-button";
+const buttonClass = "blButton blButtonBlue";
 
 function addButtons(target, setNo) {
     var btnPov = createButton("POV", buttonClass);

@@ -25,6 +25,28 @@
     },
     {
       "matches": [
+        "https://*.bricklink.com/*/catalog/*"
+      ],
+      "js": [
+        "constants.js",
+        "buttons.js",
+        "setNumberParser.js",
+        "bricklinkCatalogItem.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://store.bricklink.com/*"
+      ],
+      "js": [
+        "constants.js",
+        "buttons.js",
+        "setNumberParser.js",
+        "bricklinkShopSets.js"
+      ]
+    },
+    {
+      "matches": [
         "https://*.amazon.com/s?*"
       ],
       "js": [
