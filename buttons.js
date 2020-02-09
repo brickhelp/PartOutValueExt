@@ -1,18 +1,32 @@
-function addPOVLink(target, url, imgUrl, cssClass, text) {
-    var aTag = document.createElement("a");
-    aTag.setAttribute("class", cssClass);
-    aTag.setAttribute("href", url);
-    aTag.setAttribute("target", "_blank");
+const povUrl = "https://www.bricklink.com/catalogPOV.asp?itemType=S&itemSeq=1&itemQty=1&breakType=M&itemCondition=N&incInstr=Y&itemNo=";
+const setUrl = "https://www.bricklink.com/v2/catalog/catalogitem.page?S=";
+const figsUrl = "https://www.bricklink.com/catalogItemInv.asp?viewItemType=M&S=";
+const buttonClass = "social-button";
 
+function addButtons(target, setNo) {
+    var btnPov = createButton("POV", buttonClass);
+    btnPov.onclick = function () {
+        window.open(povUrl + setNo, '_blank');
+    };
+    target.appendChild(btnPov);
 
-    if (imgUrl) {
-        var imgTag = document.createElement("img");
-        imgTag.setAttribute("src", chrome.extension.getURL(imgUrl));
-        imgTag.setAttribute("alt", text);
-        aTag.appendChild(imgTag);
-    } else {
-        aTag.innerText = text;
-    }
+    var btnSet = createButton("Set", buttonClass);
+    btnSet.onclick = function () {
+        window.open(setUrl + setNo + "-1", '_blank');
+    };
+    target.appendChild(btnSet);
 
-    target.appendChild(aTag);
+    var btnFigs = createButton("Figs", buttonClass);
+    btnFigs.onclick = function () {
+        window.open(figsUrl + setNo + "-1", '_blank');
+    };
+    target.appendChild(btnFigs);
+}
+
+function createButton(btnText, btnClass) {
+    var btn = document.createElement("button");
+    btn.setAttribute("aria-haspopup", "true");
+    btn.setAttribute("class", btnClass);
+    btn.innerHTML = btnText;
+    return btn;
 }

@@ -23,13 +23,7 @@ for (var i = 0; i < tileElements.length; i++) {
     }
 
     if (linkArea[0]) {
-      addPOVLink(
-        linkArea[0],
-        baseUrl + setNo,
-        povImage,
-        povButtonCss,
-        povButtonText
-      );
+        addButtons(linkArea[0], setNo);
     }
   }
 }
