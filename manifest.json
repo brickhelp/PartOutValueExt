@@ -67,6 +67,17 @@
         "setNumberParser.js",
         "amazonProductPage.js"
       ]
+    },
+    {
+      "matches": [
+        "https://*.shopgoodwill.com/Listings?*"
+      ],
+      "js": [
+        "constants.js",
+        "buttons.js",
+        "setNumberParser.js",
+        "goodwillListings.js"
+      ]
     }
   ],
   "browser_action": {
